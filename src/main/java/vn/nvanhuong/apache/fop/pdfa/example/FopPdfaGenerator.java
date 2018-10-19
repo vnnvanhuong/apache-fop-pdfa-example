@@ -19,17 +19,19 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
 import org.xml.sax.SAXException;
 
 public class FopPdfaGenerator {
-	private static final String FOP_FO_FILE = "align.fo";
+	private static final String FOP_FO_FILE = "helloworld.fo";
 	private static final String CONFIG_PROPERTIES = "config.properties";
 	private static final String FOP_XCONF = "fop.xconf";
 	private static final Logger LOGGER = Logger.getLogger(FopPdfaGenerator.class.getName());
 
+	@SuppressWarnings("unchecked")
 	public static void convertXslFoToPdf() throws SAXException, IOException {
 		ClassLoader classLoader = FopPdfaGenerator.class.getClassLoader();
 		File configFile = new File(classLoader.getResource(FOP_XCONF).getFile());
@@ -41,8 +43,13 @@ public class FopPdfaGenerator {
 		FopFactory fopFactory = FopFactory.newInstance(configFile);
 		OutputStream out = new BufferedOutputStream(new FileOutputStream(new File(prop.getProperty("OUTPUT_PATH"))));
 		
+		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
+		// configure foUserAgent as desired
+		foUserAgent.setAccessibility(true);
+		foUserAgent.getRendererOptions().put("pdf-a-mode", "PDF/A-1b");
+		
 		try {
-		    Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, out);
+		    Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, foUserAgent, out);
 		    TransformerFactory factory = TransformerFactory.newInstance();
 		    Transformer transformer = factory.newTransformer();
 		    Source src = new StreamSource(classLoader.getResource(FOP_FO_FILE).getFile());
