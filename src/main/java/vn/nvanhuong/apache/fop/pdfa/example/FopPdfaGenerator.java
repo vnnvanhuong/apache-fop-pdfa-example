@@ -41,10 +41,10 @@ public class FopPdfaGenerator {
 		prop.load(is);
 		
 		FopFactory fopFactory = FopFactory.newInstance(configFile);
-		OutputStream out = new BufferedOutputStream(new FileOutputStream(new File(prop.getProperty("OUTPUT_PATH"))));
+		String outputFile = prop.getProperty("OUTPUT_PATH") + File.separator + "myfile.pdf";
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(new File(outputFile)));
 		
 		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
-		// configure foUserAgent as desired
 		foUserAgent.setAccessibility(true);
 		foUserAgent.getRendererOptions().put("pdf-a-mode", "PDF/A-1b");
 		

@@ -78,10 +78,10 @@ the location of this file.
           <font-triplet name="ArialMT" style="normal" weight="bold"/>
         </font>
         -->
-        
-        <font kerning="yes" embed-url="/Users/vnnvanhuong/Library/Fonts/Helvetica.ttf">
-		  <font-triplet name="Helvetica" style="normal" weight="normal"/>
-		</font>
+
+		<font kerning="yes" embed-url="/Library/Fonts/Arial.ttf" embedding-mode="full">
+          <font-triplet name="Arial" style="normal" weight="normal"/>
+        </font>
       </fonts>
 
       <!-- This option lets you specify additional options on an XML handler -->

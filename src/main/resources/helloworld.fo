@@ -14,7 +14,7 @@
   limitations under the License.
 -->
 <!-- $Id$ -->
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Helvetica" font-weight="normal" font-style="normal">
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" font-family="Arial" font-weight="normal" font-style="normal">
   <fo:layout-master-set>
     <fo:simple-page-master master-name="simpleA4" page-height="29.7cm" page-width="21cm" margin-top="2cm" margin-bottom="2cm" margin-left="2cm" margin-right="2cm">
       <fo:region-body/>
